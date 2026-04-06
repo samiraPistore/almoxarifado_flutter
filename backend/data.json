@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": "eb665c08-4c24-4aa1-ab14-61adcfe0df0a",
+      "nome": "vanessa",
+      "cargo": "cordenadora",
+      "email": "vanessa@gmail.com",
+      "senha": "12345"
+    },
+    {
+      "id": "7b0c8928-df1a-4c26-a898-4fdf7d573242",
+      "nome": "vanesggggsa",
+      "cargo": "cordenadora",
+      "email": "vanessa@gmail.com",
+      "senha": "12345"
+    },
+    {
+      "id": "6baf3094-10c6-4471-bc3d-5495a0174d04",
+      "nome": "Mudarerrooroeofidoçawduyf",
+      "cargo": "cordenadora",
+      "email": "vanessa@gmail.com",
+      "senha": "12345"
+    }
+  ],
+  "produtos": [
+    {
+      "id": "eded754f-e758-4104-afbb-5359c4e01b16",
+      "nome": "Produto atualizado",
+      "codigo": "daiaiai",
+      "categoria": "test33",
+      "uniMedida": "m",
+      "qtdMin": "3",
+      "qtdAtual": 30,
+      "localEstoq": "dpdfu",
+      "valorUni": "9.0"
+    },
+    {
+      "id": "ef5ef854-8a97-4bfe-b578-d5e6aa5b837d",
+      "nome": "Produto atualizado",
+      "codigo": "daiaiai",
+      "categoria": "test33",
+      "uniMedida": "m",
+      "qtdMin": "3",
+      "qtdAtual": 789,
+      "localEstoq": "dpdfu",
+      "valorUni": "9.0"
+    }
+  ],
+  "movimentacoes": [
+    {
+      "id": "6600874b-9cb3-488a-8046-9fafff0bc78b",
+      "produtoId": "eded754f-e758-4104-afbb-5359c4e01b16",
+      "tipo": "entrada",
+      "quantidade": 10,
+      "data": "2026-04-06T14:43:46.424Z",
+      "responsavel": "Samira",
+      "obs": null,
+      "destino": null
+    },
+    {
+      "id": "d8e51fb3-c62b-44c3-90ce-8deae33b92cb",
+      "produtoId": "eded754f-e758-4104-afbb-5359c4e01b16",
+      "quantidade": 100,
+      "data": "2026-04-06T14:45:16.211Z",
+      "responsavel": "Jane",
+      "obs": null,
+      "destino": null
+    }
+  ]
+}

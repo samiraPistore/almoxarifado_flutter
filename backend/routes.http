@@ -1,0 +1,86 @@
+### CRIAR PRODUTO
+POST http://localhost:3001/produtos
+Content-Type: application/json
+
+{
+    "nome": "test9",
+    "codigo":"daiaiai",
+    "categoria": "test33",
+    "uniMedida": "m",
+    "qtdMin":"3",
+    "qtdAtual": "7",
+    "localEstoq":"dpdfu",
+    "valorUni":"9.0"
+}
+
+###
+DELETE http://localhost:3001/produtos/32c04980-b945-4784-be52-2f6a00b4c04a
+
+###
+PUT http://localhost:3001/produtos/ef5ef854-8a97-4bfe-b578-d5e6aa5b837d
+Content-Type: application/json
+
+{
+    "nome": "Produto atualizado",
+    "qtdAtual": 789
+}
+
+### LISTAR todos
+GET http://localhost:3001/produtos
+
+
+
+
+### CRIAR usuário
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+    "nome": "testvanesggggsa", 
+    "cargo": "cordenadora", 
+    "email": "vanessa@gmail.com", 
+    "senha": "12345" 
+}
+
+###
+PUT http://localhost:3001/users/6baf3094-10c6-4471-bc3d-5495a0174d04
+Content-Type: application/json
+
+{
+    "nome": "Mudarerrooroeofidoçawduyf"
+
+}
+
+### LISTAR todos
+GET http://localhost:3001/users
+
+
+
+
+### CRIAR usuário
+POST http://localhost:3001/movimentacoes
+Content-Type: application/json
+
+{
+    "produtoId": "eded754f-e758-4104-afbb-5359c4e01b16",
+    "tipo": "entrada",
+    "quantidade": 10,
+    "data": "2026-04-06T11:30:00.000Z",
+    "responsavel": "Samira",
+    "obs": "",
+    "destino": ""
+}
+
+###
+DELETE http://localhost:3001/movimentacoes/736fcd01-73f4-4a8f-bea3-bae4e0f99e9e
+###
+PUT http://localhost:3001/movimentacoes/d8e51fb3-c62b-44c3-90ce-8deae33b92cb
+Content-Type: application/json
+
+{
+    "responsavel": "Jane",
+    "quantidade": 100
+
+}
+###
+GET http://localhost:3001/movimentacoes
