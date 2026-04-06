@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/components/totalProd.dart';
+import 'package:gestao_almoxerifado/components/total_prod.dart';
 import 'package:gestao_almoxerifado/models/produto.dart';
 
 

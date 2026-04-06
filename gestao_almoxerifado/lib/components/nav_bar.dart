@@ -46,7 +46,7 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Configurações'),
-            onTap: () => Navigator.of(context).pushNamed('/movimentacao'),
+            onTap: () => Navigator.of(context).pushNamed('/configuracoes'),
             ),
         ],
       ),

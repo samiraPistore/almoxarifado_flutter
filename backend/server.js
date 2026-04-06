@@ -32,6 +32,7 @@ app.get("/users", (req, res) => {
 //POST
 app.post("/users", (req, res)=> {
     const data = readData();
+    //item aramazenado na lista produtos no json 
     const novoUser = {
         id: randomUUID(),
         nome: req.body.nome,
@@ -150,7 +151,7 @@ app.post("/movimentacoes", (req, res)=> {
         destino: req.body.destino || null,
     };
 
-    const produto = data.produtos.find(p => p.id === req.body.produtoId);
+    const produto = data.produtos.find(p => p.id === req.body.produtoId); //buscar id do produto relacionado a movimentação
 
     if (!produto) {
         return res.status(404).json({ msg: "Produto não encontrado" });
@@ -261,31 +262,6 @@ app.put("/movimentacoes/:id", (req, res) => {
 
     res.json(moviment);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //RODA O SERVER 

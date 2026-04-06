@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/components/navigatorBar.dart';
-import 'package:gestao_almoxerifado/components/userForm.dart';
+import 'package:gestao_almoxerifado/components/nav_bar.dart';
+import 'package:gestao_almoxerifado/components/user_form.dart';
 import 'package:gestao_almoxerifado/models/users.dart';
 
 

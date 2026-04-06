@@ -6,8 +6,7 @@ class Movimentform extends StatefulWidget {
   final void Function(Movimentacao mov) onSubmit;
   final List<Produto> produtos;
 
-  const Movimentform(this.onSubmit, this.produtos, {Key? key})
-      : super(key: key);
+  const Movimentform(this.onSubmit, this.produtos, {super.key});
 
   @override
   State<Movimentform> createState() => _MovimentformState();

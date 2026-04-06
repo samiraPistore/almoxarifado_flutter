@@ -4,8 +4,7 @@ import '../models/moviment.dart';
 class ListaMoviment extends StatefulWidget {
   final List<Movimentacao> movimentacoes;
 
-  const ListaMoviment(this.movimentacoes, {Key? key})
-      : super(key: key);
+  const ListaMoviment(this.movimentacoes, {super.key});
 
   @override
   State<ListaMoviment> createState() => _ListaMovimentState();
@@ -14,7 +13,7 @@ class ListaMoviment extends StatefulWidget {
 class _ListaMovimentState extends State<ListaMoviment> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 400,
       child: widget.movimentacoes.isEmpty
           ? Column(

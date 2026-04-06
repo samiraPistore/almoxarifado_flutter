@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/components/NavigatorBar.dart';
+import 'package:gestao_almoxerifado/components/nav_bar.dart';
 import '../models/moviment.dart';
 
 

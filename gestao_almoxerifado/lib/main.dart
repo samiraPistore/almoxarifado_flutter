@@ -5,7 +5,7 @@ import 'package:gestao_almoxerifado/pages/dashboard.dart';
 import 'package:gestao_almoxerifado/pages/estoque.dart';
 import 'package:gestao_almoxerifado/pages/login.dart';
 import 'package:gestao_almoxerifado/pages/moviment.dart';
-import 'components/NavigatorBar.dart';
+import 'components/nav_bar.dart';
 
 void main() {
   runApp(const MyApp());

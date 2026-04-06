@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/components/prodForm.dart';
-import 'package:gestao_almoxerifado/components/NavigatorBar.dart';
+import 'package:gestao_almoxerifado/components/prod_form.dart';
+import 'package:gestao_almoxerifado/components/nav_bar.dart';
 import 'package:gestao_almoxerifado/models/produto.dart';
-import 'package:gestao_almoxerifado/components/produtoList.dart';
+import 'package:gestao_almoxerifado/components/prod_list.dart';
 import 'dart:convert';
 import  'package:http/http.dart'  as http;
 
@@ -49,6 +47,8 @@ class _EstoqueState extends State<Estoque> {
     );
   }
 
+
+  
   @override
 
   void initState(){
@@ -56,18 +56,18 @@ class _EstoqueState extends State<Estoque> {
     _fetchProdutos();
   }
   Future<void> _fetchProdutos() async{
-    final response = await http.get(Uri.parse('http://localhost:3001/produtos'));
+    final response = await http.get(Uri.parse('http://10.196.200.12:3001/produtos'));
     if(response.statusCode == 200){
       final List<dynamic> json = jsonDecode(response.body);
       setState(() {
           produtos = json.map((item) => Produto.fromJson(item)).toList(); } 
-      );    
+      ); 
+      // ignore: avoid_print
+      print('Funcionou');
     } else { 
       throw Exception( 'Falha ao carregar produtos' );     
     }   
   }
-  
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
