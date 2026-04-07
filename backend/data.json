@@ -20,30 +20,37 @@
       "cargo": "cordenadora",
       "email": "vanessa@gmail.com",
       "senha": "12345"
+    },
+    {
+      "id": "3eab06e6-9423-4b55-bec8-463a342eebb5",
+      "nome": "qualquer",
+      "cargo": "ti",
+      "email": "ti.get@gmail",
+      "senha": "tioi"
     }
   ],
   "produtos": [
     {
-      "id": "eded754f-e758-4104-afbb-5359c4e01b16",
-      "nome": "Produto atualizado",
+      "id": "5ff99712-47b6-4126-a6a2-6ae99042afdf",
+      "nome": "test9",
       "codigo": "daiaiai",
       "categoria": "test33",
       "uniMedida": "m",
       "qtdMin": "3",
-      "qtdAtual": 30,
+      "qtdAtual": "7",
       "localEstoq": "dpdfu",
       "valorUni": "9.0"
     },
     {
-      "id": "ef5ef854-8a97-4bfe-b578-d5e6aa5b837d",
-      "nome": "Produto atualizado",
-      "codigo": "daiaiai",
-      "categoria": "test33",
-      "uniMedida": "m",
-      "qtdMin": "3",
-      "qtdAtual": 789,
-      "localEstoq": "dpdfu",
-      "valorUni": "9.0"
+      "id": "865a591a-5051-4d22-b15d-748a82c8ae9c",
+      "nome": "ddd",
+      "codigo": "ff",
+      "categoria": "fff",
+      "uniMedida": "ccc",
+      "qtdMin": 2,
+      "qtdAtual": 5,
+      "localEstoq": "de",
+      "valorUni": 3.99
     }
   ],
   "movimentacoes": [

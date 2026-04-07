@@ -18,4 +18,18 @@ class Movimentacao {
     this.obs,
     this.destino,
   });
+
+  
+  factory Movimentacao.fromJson(Map<String, dynamic> json) {
+    return Movimentacao(
+      id: json['id'].toString(), 
+      produtoId: json['produtoId'], 
+      tipo: json['tipo'], 
+      quantidade: json['quantidade'], 
+      data: DateTime.parse(json['data']), 
+      responsavel: json['responsavel'],
+      obs: json['obs'],
+      destino: json['destino'],
+    );
+  }
 }

@@ -4,7 +4,7 @@ import 'package:gestao_almoxerifado/pages/dashboard.dart';
 
 import 'package:gestao_almoxerifado/pages/estoque.dart';
 import 'package:gestao_almoxerifado/pages/login.dart';
-import 'package:gestao_almoxerifado/pages/moviment.dart';
+import 'package:gestao_almoxerifado/pages/moviment_page.dart';
 import 'components/nav_bar.dart';
 
 void main() {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/estoque': (context) => Estoque(),
         '/movimentacao': (context) => MovimentacaoPage(),
-        '/config' : (context) => Configuracoes(),
+        '/configuracoes' : (context) => Configuracoes(),
       },
   
     );

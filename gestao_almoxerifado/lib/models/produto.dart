@@ -2,7 +2,7 @@ class Produto {
   String id;
   String nome;
   String codigo;
-  String categotia;
+  String categoria;
   String uniMedida;
   int qtdMin;
   int qtdAtual;
@@ -13,7 +13,7 @@ class Produto {
     required this.id,
     required this.nome,
     required this.codigo,
-    required this.categotia,
+    required this.categoria,
     required this.uniMedida,
     required this.qtdMin,
     required this.qtdAtual,
@@ -26,13 +26,12 @@ class Produto {
       id: json['id'].toString(),
       nome: json['nome'],
       codigo: json['codigo'],
-      categotia: json['categotia'],
+      categoria: json['categoria'], // corrigido aqui
       uniMedida: json['uniMedida'],
-      qtdMin: json['qtdMin'] ?? 0,
-      qtdAtual: json['qtdAtual'] ?? 0,
+      qtdMin: int.tryParse(json['qtdMin'].toString()) ?? 0,
+      qtdAtual: int.tryParse(json['qtdAtual'].toString()) ?? 0,
       localEstoq: json['localEstoq'],
-      valorUni: (json['valorUni'] as num).toDouble(),
+      valorUni: double.tryParse(json['valorUni'].toString()) ?? 0.0,
     );
   }
-
 }

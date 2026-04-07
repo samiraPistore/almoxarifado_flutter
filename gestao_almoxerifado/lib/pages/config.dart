@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/components/nav_bar.dart';
 import 'package:gestao_almoxerifado/components/user_form.dart';
+import 'package:gestao_almoxerifado/components/user_list.dart';
 import 'package:gestao_almoxerifado/models/users.dart';
+import 'package:gestao_almoxerifado/services/user_service.dart';
 
 
 class Configuracoes extends StatefulWidget {
@@ -13,16 +15,46 @@ class Configuracoes extends StatefulWidget {
 
 
 class _ConfiguracoesState extends State<Configuracoes> {
-  final List<Users> _users = [];
+  List<Users> users = [];
 
-  _addUser(Users user) {
+  void _addUser(Users user) async {
+    final novo = await UserService.addUser(user);
+
     setState(() {
-      _users.add(user);
+      users.add(novo);
     });
     Navigator.of(context).pop();
   }
 
+   void _removeUser(String id) async{
+    await UserService.deleteUser(id);
+    setState(() {
+      users.removeWhere((ur) => ur.id == id);
+    });
+  }
+
+  //Função editar a produto com base no id
+  void _editaUser(String id, String novoTitulo) {
+    setState(() {
+      final user = users.firstWhere((ur) => ur.id == id);
+     user.nome = novoTitulo;
+    });
+  }
+
+
   @override
+
+  void initState(){
+    super.initState();
+    _carregarUsers();
+  }
+
+  Future<void> _carregarUsers() async{
+    final lista = await UserService.fetchUsers();
+    setState(() {
+      users = lista;
+    });
+  }
   Widget build(BuildContext context) {
  
     return Scaffold(
@@ -32,7 +64,12 @@ class _ConfiguracoesState extends State<Configuracoes> {
         title: Text('Configurações'),
       ),
       body: Container(
-        child: UserForm(onSubmit: _addUser),
+        child: Column(
+          children: [
+            Container(child: UserForm(onSubmit: _addUser)),
+            Expanded(child: UserList(users, _removeUser, _editaUser)),
+          ],
+        ),
       )
     
     );

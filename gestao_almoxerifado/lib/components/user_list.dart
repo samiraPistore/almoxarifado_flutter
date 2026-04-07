@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/models/produto.dart';
+import 'package:gestao_almoxerifado/models/users.dart';
 
-class ListaProdutos extends StatefulWidget {
-  final List<Produto> produtos;
+class UserList extends StatefulWidget {
+  final List<Users> users;
   final void Function(String) onRemove;
-  final void Function(String id, String novoTitle) onEdit;
+  final void Function(String id, String novoUser) onEdit;
 
   //Construtor da lista
-  const ListaProdutos(this.produtos, this.onRemove, this.onEdit, {Key? key})
+  const UserList(this.users, this.onRemove, this.onEdit, {Key? key})
     : super(key: key);
 
   @override
-  State<ListaProdutos> createState() => _ListaProdutosState();
+  State<UserList> createState() => _UserListState();
 }
 
-class _ListaProdutosState extends State<ListaProdutos> {
+class _UserListState extends State<UserList> {
   String? editandoId;
   final controller = TextEditingController();
   @override
@@ -22,39 +23,39 @@ class _ListaProdutosState extends State<ListaProdutos> {
     return Container(
       child:
           widget
-              .produtos
+              .users
               .isEmpty //se lista estiver vazia mostra o texto "Nenhuma tarefa cadastrada"
           ? Column(
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Nenhuma Produto cadastrada!',
+                  'Nenhum usuário cadastrado!',
                   style: TextStyle(color: Colors.white),
                 ),
               ],
             )
-          //se não retorna as produtos
+          //se não retorna as users
           : ListView.builder(
-              itemCount: widget.produtos.length,
+              itemCount: widget.users.length,
               itemBuilder: (ctx, index) {
-                final pr = widget.produtos[index];
+                final ur = widget.users[index];
                 return Card(
                   margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                   elevation: 3,
                   shape: Border.all(),
                   child: ListTile(
-                    title: editandoId == pr.id
+                    title: editandoId == ur.id
                         ? TextField(
                             controller: controller,
                             onSubmitted: (value) {
-                              widget.onEdit(pr.id, value);
+                              widget.onEdit(ur.id, value);
                               setState(() {
                                 editandoId = null;
                               });
                             },
                           )
                         : Text(
-                          pr.nome,
+                          ur.nome,
                             style: TextStyle(
                               color: Theme.of(context).primaryColorDark,
                             ),
@@ -67,19 +68,19 @@ class _ListaProdutosState extends State<ListaProdutos> {
                           icon: Icon(Icons.delete),
 
                           color: Theme.of(context).colorScheme.error,
-                          onPressed: () => widget.onRemove(pr.id),
+                          onPressed: () => widget.onRemove(ur.id),
                         ),
                         IconButton(
                           icon: Icon(Icons.edit),
                           color: Theme.of(context).primaryColor,
                           onPressed: () {
                             setState(() {
-                              if (editandoId == pr.id) {
-                                widget.onEdit(pr.id, controller.text);
+                              if (editandoId == ur.id) {
+                                widget.onEdit(ur.id, controller.text);
                                 editandoId = null;
                               } else {
-                                editandoId = pr.id;
-                                controller.text = pr.nome;
+                                editandoId = ur.id;
+                                controller.text = ur.nome;
                               }
                             });
                           },

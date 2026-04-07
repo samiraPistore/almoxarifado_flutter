@@ -161,7 +161,7 @@ app.post("/movimentacoes", (req, res)=> {
 
     if (req.body.tipo === "entrada") {
         produto.qtdAtual += novaMoviment.quantidade;
-    } else if (req.body.tipo === "saida") {
+    } else if (req.body.tipo === "saída") {
         produto.qtdAtual -= novaMoviment.quantidade;
     }
 

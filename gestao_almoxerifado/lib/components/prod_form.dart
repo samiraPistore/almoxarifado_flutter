@@ -20,10 +20,10 @@ class _ProdutoFormState extends State<ProdutoForm> {
   final _localController = TextEditingController();
   final _valorController = TextEditingController();
 
- _submitForm() {
+  _submitForm() {
     final nome = _nomeController.text;
     final qtd = int.tryParse(_qtdMinController.text) ?? 0;
-    final valor = double.tryParse(_valorController.text) ?? 0;
+    final valor = double.tryParse(_valorController.text.replaceAll(',', '.')) ?? 0;
 
     // validação simples
     if (nome.isEmpty || qtd <= 0 || valor <= 0) return;
@@ -33,7 +33,7 @@ class _ProdutoFormState extends State<ProdutoForm> {
         id: Random().nextDouble().toString(),
         nome: _nomeController.text,
         codigo: _codigoController.text,
-        categotia: _categoriaController.text,
+        categoria: _categoriaController.text,
         uniMedida: _uniMedidaController.text,
         qtdMin: int.tryParse(_qtdMinController.text) ?? 0,
         qtdAtual: int.tryParse(_qtdAtualController.text) ?? 0,
@@ -52,7 +52,7 @@ class _ProdutoFormState extends State<ProdutoForm> {
     _localController.clear();
     _valorController.clear();
   }
-   
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -85,14 +85,16 @@ class _ProdutoFormState extends State<ProdutoForm> {
                 ),
               ),
               TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: _qtdMinController,
-  
+
                 onSubmitted: (_) => _submitForm(),
                 decoration: const InputDecoration(
                   labelText: 'Quantidade mínima',
                 ),
               ),
               TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: _qtdAtualController,
                 onSubmitted: (_) => _submitForm(),
                 decoration: const InputDecoration(
@@ -107,6 +109,7 @@ class _ProdutoFormState extends State<ProdutoForm> {
                 ),
               ),
               TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: _valorController,
                 onSubmitted: (_) => _submitForm(),
                 decoration: const InputDecoration(labelText: 'Valor unitário'),
@@ -117,17 +120,27 @@ class _ProdutoFormState extends State<ProdutoForm> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                    child: Text('Nova Tarefa'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 77, 160, 243),
-                      foregroundColor: const Color.fromARGB(255, 255, 254, 254)
-                    ),
-            
-                   onPressed: _submitForm, 
+                      child: Text('Nova Tarefa'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(
+                          255,
+                          77,
+                          160,
+                          243,
+                        ),
+                        foregroundColor: const Color.fromARGB(
+                          255,
+                          255,
+                          254,
+                          254,
+                        ),
+                      ),
+
+                      onPressed: _submitForm,
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

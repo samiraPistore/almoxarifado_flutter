@@ -1,63 +1,112 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/models/moviment.dart';
 import 'package:gestao_almoxerifado/models/produto.dart';
+import 'package:gestao_almoxerifado/services/prod_services.dart';
 
 class Movimentform extends StatefulWidget {
-  final void Function(Movimentacao mov) onSubmit;
-  final List<Produto> produtos;
+  final void Function(Movimentacao) onSubmit;
+  final List<Movimentacao> movimentacoes;
 
-  const Movimentform(this.onSubmit, this.produtos, {super.key});
+  const Movimentform(this.onSubmit, this.movimentacoes, {Key? key})
+    : super(key: key);
 
   @override
   State<Movimentform> createState() => _MovimentformState();
 }
 
 class _MovimentformState extends State<Movimentform> {
+  List<Produto> produtos = [];
   Produto? produtoSelecionado;
 
-  final _tipoController = TextEditingController();
+  bool isEntrada = true;
   final _quantidadeController = TextEditingController();
   final _responsController = TextEditingController();
   final _obsController = TextEditingController();
   final _destinoController = TextEditingController();
 
-  final DateTime _selectedDate = DateTime.now();
-
   void _submitForm() {
-    final quantidade =
-        int.tryParse(_quantidadeController.text) ?? 0;
-
-    if (produtoSelecionado == null || quantidade <= 0) {
+    final quantidade = int.tryParse(_quantidadeController.text) ?? 0;
+    final responsavel = _responsController.text;
+    if (produtoSelecionado == null) {
       return;
+    } else {
+      widget.onSubmit(
+        Movimentacao(
+          id: Random().nextDouble().toString(),
+          produtoId: produtoSelecionado!.id,
+          tipo: isEntrada ? "entrada" : "saída",
+          quantidade: int.parse(_quantidadeController.text),
+          data: DateTime.now(),
+          responsavel: _responsController.text,
+          obs: _obsController.text,
+          destino: isEntrada ? null : _destinoController.text,
+        ),
+      );
     }
 
-    final novaMovimentacao = Movimentacao(
-      id: DateTime.now().toString(),
-      produtoId: produtoSelecionado!.id,
-      tipo: _tipoController.text,
-      quantidade: quantidade,
-      data: _selectedDate,
-      responsavel: _responsController.text,
-      obs: _obsController.text,
-      destino: _destinoController.text,
-    );
-
-    widget.onSubmit(novaMovimentacao);
+    _quantidadeController.clear();
+    _responsController.clear();
+    _obsController.clear();
+    _destinoController.clear();
   }
 
   @override
+  void initState() {
+    super.initState();
+    _carregarProdutos();
+  }
+
+  Future<void> _carregarProdutos() async {
+    final lista = await ProdutoService.fetchProdutos();
+
+    setState(() {
+      produtos = lista;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // 🔘 SELETOR
+        Row(
+          children: [
+            Expanded(
+              child: RadioListTile<bool>(
+                title: Text("Entrada"),
+                value: true,
+                groupValue: isEntrada,
+                onChanged: (value) {
+                  setState(() {
+                    isEntrada = value!;
+                    _destinoController.clear();
+                  });
+                },
+              ),
+            ),
+            Expanded(
+              child: RadioListTile<bool>(
+                title: Text("Saída"),
+                value: false,
+                groupValue: isEntrada,
+                onChanged: (value) {
+                  setState(() {
+                    isEntrada = value!;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+
+        // 📦 PRODUTO
         DropdownButtonFormField<Produto>(
           hint: Text("Selecione um produto"),
           value: produtoSelecionado,
-          items: widget.produtos.map((produto) {
-            return DropdownMenuItem(
-              value: produto,
-              child: Text(produto.nome),
-            );
+          items: produtos.map((produto) {
+            return DropdownMenuItem(value: produto, child: Text(produto.nome));
           }).toList(),
           onChanged: (value) {
             setState(() {
@@ -66,16 +115,35 @@ class _MovimentformState extends State<Movimentform> {
           },
         ),
 
+        // 🔢 QUANTIDADE
         TextField(
           controller: _quantidadeController,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(labelText: "Quantidade"),
         ),
 
-        ElevatedButton(
-          onPressed: _submitForm,
-          child: Text("Salvar"),
+        // 👤 RESPONSÁVEL
+        TextField(
+          controller: _responsController,
+          decoration: InputDecoration(labelText: "Responsável"),
         ),
+
+        // 📝 OBS
+        TextField(
+          controller: _obsController,
+          decoration: InputDecoration(labelText: "Observação"),
+        ),
+
+        // 🚚 DESTINO (SÓ NA SAÍDA)
+        if (!isEntrada)
+          TextField(
+            controller: _destinoController,
+            decoration: InputDecoration(labelText: "Destino"),
+          ),
+
+        const SizedBox(height: 10),
+
+        ElevatedButton(onPressed: _submitForm, child: Text("Salvar")),
       ],
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/models/users.dart';
 
@@ -16,7 +18,7 @@ class _UserFormState extends State<UserForm> {
   final _senhaController = TextEditingController();
 
 
- _submitForm() {
+ void _submitForm() {
     final nomeUser = _nomeUserController.text;
     final cargo = _cargoController.text;
     final email = _emailController.text;
@@ -26,7 +28,15 @@ class _UserFormState extends State<UserForm> {
     if (nomeUser.isEmpty || cargo.isEmpty|| email.isEmpty || senha.isEmpty){
       return;
     }else{
-       widget.onSubmit(Users(nome: nomeUser, cargo: cargo, email: email, senha: senha));
+       widget.onSubmit(
+        Users(
+          id: Random().nextDouble().toString(),
+          nome: nomeUser, 
+          cargo: cargo, 
+          email: email, 
+          senha: senha, 
+          ),
+        );
     }
 
     // limpa tudo
