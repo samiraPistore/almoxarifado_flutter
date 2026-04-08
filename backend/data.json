@@ -37,7 +37,7 @@
       "categoria": "test33",
       "uniMedida": "m",
       "qtdMin": "3",
-      "qtdAtual": "7",
+      "qtdAtual": 12,
       "localEstoq": "dpdfu",
       "valorUni": "9.0"
     },
@@ -48,9 +48,20 @@
       "categoria": "fff",
       "uniMedida": "ccc",
       "qtdMin": 2,
-      "qtdAtual": 5,
+      "qtdAtual": 76,
       "localEstoq": "de",
       "valorUni": 3.99
+    },
+    {
+      "id": "32ce3982-0d5a-4993-9fc1-ac1121111fa8",
+      "nome": "test9",
+      "codigo": "daiaiai",
+      "categoria": "test33",
+      "uniMedida": "m",
+      "qtdMin": "3",
+      "qtdAtual": "2",
+      "localEstoq": "dpdfu",
+      "valorUni": "9.0"
     }
   ],
   "movimentacoes": [
@@ -65,11 +76,42 @@
       "destino": null
     },
     {
-      "id": "d8e51fb3-c62b-44c3-90ce-8deae33b92cb",
-      "produtoId": "eded754f-e758-4104-afbb-5359c4e01b16",
-      "quantidade": 100,
-      "data": "2026-04-06T14:45:16.211Z",
-      "responsavel": "Jane",
+      "id": "fc7f273b-2547-4c14-8f87-ffa7d4e6a4c9",
+      "produtoId": "5ff99712-47b6-4126-a6a2-6ae99042afdf",
+      "tipo": "entrada",
+      "quantidade": 5,
+      "data": "2026-04-08T14:13:56.687Z",
+      "responsavel": "ff",
+      "obs": "fg",
+      "destino": null
+    },
+    {
+      "id": "32b93f43-202e-4d6c-82b5-3153cae2858d",
+      "produtoId": "865a591a-5051-4d22-b15d-748a82c8ae9c",
+      "tipo": "entrada",
+      "quantidade": 10,
+      "data": "2026-04-08T14:15:10.072Z",
+      "responsavel": "Samira",
+      "obs": "tttt",
+      "destino": null
+    },
+    {
+      "id": "2fe0b5fd-11c5-4765-9b89-dcde33eddeef",
+      "produtoId": "865a591a-5051-4d22-b15d-748a82c8ae9c",
+      "tipo": "saída",
+      "quantidade": 5,
+      "data": "2026-04-08T14:15:40.379Z",
+      "responsavel": "samira ",
+      "obs": "vb",
+      "destino": "kkk"
+    },
+    {
+      "id": "39d4a079-02fc-496c-aae2-a5f201e5860b",
+      "produtoId": "865a591a-5051-4d22-b15d-748a82c8ae9c",
+      "tipo": "entrada",
+      "quantidade": 66,
+      "data": "2026-04-08T14:16:41.108Z",
+      "responsavel": "ggiii",
       "obs": null,
       "destino": null
     }

@@ -18,14 +18,14 @@ class MovimentService {
    //Adiconar
   static Future<Movimentacao> addMovimentacao(Movimentacao moviment) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/users'),
+      Uri.parse('$baseUrl/movimentacoes'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         "id": moviment.id,
         "produtoId": moviment.produtoId,
         "tipo": moviment.tipo,
         "quantidade": moviment.quantidade,
-        "data": moviment.data,
+        "data": moviment.data.toIso8601String(),
         "responsavel": moviment.responsavel,
         "obs": moviment.obs,
         "destino": moviment.destino,

@@ -13,17 +13,22 @@ class Estoque extends StatefulWidget {
 }
 
 class _EstoqueState extends State<Estoque> {
+  //lista produtos
   List<Produto> produtos = [];
 
+  ////Função para adiconar produtos
   void _addProduto(Produto produto) async {
+    //chama o serviço para salvar no backend
     final novo = await ProdutoService.addProduto(produto);
 
     setState(() {
       produtos.add(novo);
     });
+    //fechar o modal
     Navigator.of(context).pop();
   }
 
+  //Função deletar 
   void _removeProduto(String id) async{
     await ProdutoService.deleteProduto(id);
     setState(() {
@@ -63,6 +68,7 @@ class _EstoqueState extends State<Estoque> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart

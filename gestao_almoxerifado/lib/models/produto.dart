@@ -21,6 +21,7 @@ class Produto {
     required this.valorUni,
   });
 
+  //Construtor que cria um objeto a patir de um Json
   factory Produto.fromJson(Map<String, dynamic> json) {
     return Produto(
       id: json['id'].toString(),

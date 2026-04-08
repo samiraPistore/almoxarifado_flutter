@@ -8,7 +8,7 @@ Content-Type: application/json
     "categoria": "test33",
     "uniMedida": "m",
     "qtdMin":"3",
-    "qtdAtual": "7",
+    "qtdAtual": "2",
     "localEstoq":"dpdfu",
     "valorUni":"9.0"
 }

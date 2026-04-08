@@ -40,9 +40,8 @@ class _UserListState extends State<UserList> {
               itemBuilder: (ctx, index) {
                 final ur = widget.users[index];
                 return Card(
-                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  margin: EdgeInsets.all(10),
                   elevation: 3,
-                  shape: Border.all(),
                   child: ListTile(
                     title: editandoId == ur.id
                         ? TextField(

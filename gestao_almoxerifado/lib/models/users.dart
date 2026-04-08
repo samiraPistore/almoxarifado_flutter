@@ -14,6 +14,7 @@ class Users {
 
   });
 
+  //Construtor que cria um objeto a patir de um Json
   factory Users.fromJson(Map<String, dynamic> json){
     return Users(
       id: json['id'].toString(),

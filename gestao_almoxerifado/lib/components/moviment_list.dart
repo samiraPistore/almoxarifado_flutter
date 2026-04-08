@@ -29,6 +29,7 @@ class _ListaMovimentState extends State<ListaMoviment> {
 
                 return Card(
                   margin: EdgeInsets.all(10),
+                  elevation: 3,
                   child: ListTile(
                     title: Text(
                       mov.tipo.toUpperCase(),

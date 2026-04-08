@@ -20,11 +20,14 @@ class _MovimentformState extends State<Movimentform> {
   List<Produto> produtos = [];
   Produto? produtoSelecionado;
 
-  bool isEntrada = true;
+  List<String> tipos = ['entrada', 'saída'];
+  String? tipoMovimentcao;
+
   final _quantidadeController = TextEditingController();
   final _responsController = TextEditingController();
   final _obsController = TextEditingController();
   final _destinoController = TextEditingController();
+  DateTime _selectedDate = DateTime.now();
 
   void _submitForm() {
     final quantidade = int.tryParse(_quantidadeController.text) ?? 0;
@@ -36,12 +39,14 @@ class _MovimentformState extends State<Movimentform> {
         Movimentacao(
           id: Random().nextDouble().toString(),
           produtoId: produtoSelecionado!.id,
-          tipo: isEntrada ? "entrada" : "saída",
+          tipo: tipoMovimentcao ?? "entrada",
           quantidade: int.parse(_quantidadeController.text),
-          data: DateTime.now(),
+          data: _selectedDate,
           responsavel: _responsController.text,
           obs: _obsController.text,
-          destino: isEntrada ? null : _destinoController.text,
+          destino: tipoMovimentcao == 'entrada'
+              ? null
+              : _destinoController.text,
         ),
       );
     }
@@ -50,6 +55,22 @@ class _MovimentformState extends State<Movimentform> {
     _responsController.clear();
     _obsController.clear();
     _destinoController.clear();
+  }
+
+  _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return print('Error');
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
   }
 
   @override
@@ -70,41 +91,31 @@ class _MovimentformState extends State<Movimentform> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔘 SELETOR
-        Row(
-          children: [
-            Expanded(
-              child: RadioListTile<bool>(
-                title: Text("Entrada"),
-                value: true,
-                groupValue: isEntrada,
-                onChanged: (value) {
-                  setState(() {
-                    isEntrada = value!;
-                    _destinoController.clear();
-                  });
-                },
-              ),
-            ),
-            Expanded(
-              child: RadioListTile<bool>(
-                title: Text("Saída"),
-                value: false,
-                groupValue: isEntrada,
-                onChanged: (value) {
-                  setState(() {
-                    isEntrada = value!;
-                  });
-                },
-              ),
-            ),
-          ],
-        ),
+        DropdownButtonFormField<String>(
+          hint: Text("Selecione o tipo de movimentação:"),
+          initialValue: tipoMovimentcao,
 
-        // 📦 PRODUTO
+          items: tipos.map((tipo) {
+            return DropdownMenuItem<String>(value: tipo, child: Text(tipo));
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              tipoMovimentcao = value;
+
+              _destinoController.clear();
+
+              if (tipoMovimentcao == 'entrada') {
+                print('entrada selecionada');
+              } else {
+                print('saida selecionada');
+              }
+            });
+          },
+        ),
+        // PRODUTO
         DropdownButtonFormField<Produto>(
-          hint: Text("Selecione um produto"),
-          value: produtoSelecionado,
+          hint: Text("Selecione um produto:"),
+          initialValue: produtoSelecionado,
           items: produtos.map((produto) {
             return DropdownMenuItem(value: produto, child: Text(produto.nome));
           }).toList(),
@@ -115,32 +126,49 @@ class _MovimentformState extends State<Movimentform> {
           },
         ),
 
-        // 🔢 QUANTIDADE
+        //Quantidade
         TextField(
           controller: _quantidadeController,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(labelText: "Quantidade"),
         ),
 
-        // 👤 RESPONSÁVEL
+        //Responsável
         TextField(
           controller: _responsController,
           decoration: InputDecoration(labelText: "Responsável"),
         ),
 
-        // 📝 OBS
+        //Obs
         TextField(
           controller: _obsController,
           decoration: InputDecoration(labelText: "Observação"),
         ),
 
-        // 🚚 DESTINO (SÓ NA SAÍDA)
-        if (!isEntrada)
+        // Mostrar destino apenas na saída
+        if (tipoMovimentcao == 'saída')
           TextField(
             controller: _destinoController,
             decoration: InputDecoration(labelText: "Destino"),
           ),
-
+        SizedBox(
+              height: 70,
+              child: Row(
+                children: <Widget> [
+                  Expanded(
+                    child: Text(
+                       _selectedDate == null
+                          ? 'Nenhuma data selecionada!'
+                          : 'Data Selecionada: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}'
+                      ),
+                  ),
+                  TextButton(
+                    child: Text('Selecionar Data'), 
+                    onPressed: _showDatePicker, 
+                    ),
+                ],
+              ),
+            ),
         const SizedBox(height: 10),
 
         ElevatedButton(onPressed: _submitForm, child: Text("Salvar")),

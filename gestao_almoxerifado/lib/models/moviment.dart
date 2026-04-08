@@ -19,17 +19,19 @@ class Movimentacao {
     this.destino,
   });
 
-  
-  factory Movimentacao.fromJson(Map<String, dynamic> json) {
-    return Movimentacao(
-      id: json['id'].toString(), 
-      produtoId: json['produtoId'], 
-      tipo: json['tipo'], 
-      quantidade: json['quantidade'], 
-      data: DateTime.parse(json['data']), 
-      responsavel: json['responsavel'],
-      obs: json['obs'],
-      destino: json['destino'],
-    );
-  }
+  //Construtor que cria um objeto a patir de um Json
+ factory Movimentacao.fromJson(Map<String, dynamic> json) {
+  return Movimentacao(
+    id: json['id']?.toString() ?? '',
+    produtoId: json['produtoId']?.toString() ?? '',
+    tipo: json['tipo'] ?? '',
+    quantidade: json['quantidade'] ?? 0,
+    data: json['data'] != null
+        ? DateTime.parse(json['data'])
+        : DateTime.now(),
+    responsavel: json['responsavel'] ?? '',
+    obs: json['obs'],
+    destino: json['destino'], // pode ser null mesmo ✔
+  );
+}
 }

@@ -39,9 +39,8 @@ class _ListaProdutosState extends State<ListaProdutos> {
               itemBuilder: (ctx, index) {
                 final pr = widget.produtos[index];
                 return Card(
-                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  margin: EdgeInsets.all(10),
                   elevation: 3,
-                  shape: Border.all(),
                   child: ListTile(
                     title: editandoId == pr.id
                         ? TextField(

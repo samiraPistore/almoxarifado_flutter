@@ -14,16 +14,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // Raiz da 
+  // Raiz da aplicação
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Gestão Almoxarifado',
       theme: ThemeData(
-        // This is the theme of your application.
-       
+       //tema        
         colorScheme: .fromSeed(seedColor: Colors.green),
       ),
+      //rotas
       initialRoute: '/',
       routes: {
         '/': (context) => Login(),
