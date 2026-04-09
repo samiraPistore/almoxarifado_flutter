@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/components/prod_form.dart';
 import 'package:gestao_almoxerifado/components/nav_bar.dart';
-import 'package:gestao_almoxerifado/models/produto.dart';
+import 'package:gestao_almoxerifado/models/produto_model.dart';
 import 'package:gestao_almoxerifado/components/prod_list.dart';
 import 'package:gestao_almoxerifado/services/prod_services.dart';
 

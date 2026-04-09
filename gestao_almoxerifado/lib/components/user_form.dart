@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/models/users.dart';
+import 'package:gestao_almoxerifado/models/users_model.dart';
 
 class UserForm extends StatefulWidget {
   final void Function(Users) onSubmit;

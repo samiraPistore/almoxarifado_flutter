@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/moviment.dart';
+import '../models/moviment_model.dart';
 
 class ListaMoviment extends StatefulWidget {
   final List<Movimentacao> movimentacoes;

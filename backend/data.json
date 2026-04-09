@@ -62,6 +62,17 @@
       "qtdAtual": "2",
       "localEstoq": "dpdfu",
       "valorUni": "9.0"
+    },
+    {
+      "id": "82443788-9018-48a9-95ae-4cb539a668a8",
+      "nome": "rrr",
+      "codigo": "ttt",
+      "categoria": "fff",
+      "uniMedida": "rr",
+      "qtdMin": 44,
+      "qtdAtual": 14,
+      "localEstoq": "rerr",
+      "valorUni": 5.9
     }
   ],
   "movimentacoes": [
@@ -114,6 +125,16 @@
       "responsavel": "ggiii",
       "obs": null,
       "destino": null
+    },
+    {
+      "id": "03a05c30-7390-4a61-9fdd-5504c0d15239",
+      "produtoId": "82443788-9018-48a9-95ae-4cb539a668a8",
+      "tipo": "saída",
+      "quantidade": 11,
+      "data": "2026-04-09T17:35:24.214Z",
+      "responsavel": "ee",
+      "obs": "f",
+      "destino": "xx"
     }
   ]
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/models/produto.dart';
-import 'package:gestao_almoxerifado/models/users.dart';
+import 'package:gestao_almoxerifado/models/users_model.dart';
 
 class UserList extends StatefulWidget {
   final List<Users> users;
@@ -8,8 +7,7 @@ class UserList extends StatefulWidget {
   final void Function(String id, String novoUser) onEdit;
 
   //Construtor da lista
-  const UserList(this.users, this.onRemove, this.onEdit, {Key? key})
-    : super(key: key);
+  const UserList(this.users, this.onRemove, this.onEdit, {super.key});
 
   @override
   State<UserList> createState() => _UserListState();

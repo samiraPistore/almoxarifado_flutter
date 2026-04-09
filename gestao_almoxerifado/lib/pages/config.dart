@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/components/nav_bar.dart';
 import 'package:gestao_almoxerifado/components/user_form.dart';
 import 'package:gestao_almoxerifado/components/user_list.dart';
-import 'package:gestao_almoxerifado/models/users.dart';
+import 'package:gestao_almoxerifado/models/users_model.dart';
 import 'package:gestao_almoxerifado/services/user_service.dart';
 
 

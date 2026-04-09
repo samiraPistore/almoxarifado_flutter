@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/models/produto.dart';
+import 'package:gestao_almoxerifado/models/produto_model.dart';
 
 class ProdutoForm extends StatefulWidget {
   final void Function(Produto) onSubmit;
@@ -20,7 +20,7 @@ class _ProdutoFormState extends State<ProdutoForm> {
   final _localController = TextEditingController();
   final _valorController = TextEditingController();
 
-  _submitForm() {
+  void _submitForm() {
     final nome = _nomeController.text;
     final qtd = int.tryParse(_qtdMinController.text) ?? 0;
     final valor = double.tryParse(_valorController.text.replaceAll(',', '.')) ?? 0;

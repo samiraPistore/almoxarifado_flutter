@@ -277,6 +277,7 @@ app.get("/dashboard", async (req, res) => {
    }
   
 
+
   res.json({ totalMov, totalProd, totalEntrada, totalSaida, estoqueBaixo});
 });
 //RODA O SERVER

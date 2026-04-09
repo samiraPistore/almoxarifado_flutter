@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/models/produto.dart';
+import 'package:gestao_almoxerifado/models/produto_model.dart';
 
 class ListaProdutos extends StatefulWidget {
   final List<Produto> produtos;

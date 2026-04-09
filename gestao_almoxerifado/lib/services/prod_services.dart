@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../models/produto.dart';
+import '../models/produto_model.dart';
 
 class ProdutoService {
   static const String baseUrl = 'http://10.0.2.2:3001';

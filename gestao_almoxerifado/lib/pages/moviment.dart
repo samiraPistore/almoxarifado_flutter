@@ -3,7 +3,7 @@ import 'package:gestao_almoxerifado/components/moviment_form.dart';
 import 'package:gestao_almoxerifado/components/moviment_list.dart';
 import 'package:gestao_almoxerifado/components/nav_bar.dart';
 import 'package:gestao_almoxerifado/services/moviment_service.dart';
-import '../models/moviment.dart';
+import '../models/moviment_model.dart';
 
 //Página de movimentação
 class MovimentacaoPage extends StatefulWidget {

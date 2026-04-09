@@ -1,16 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:gestao_almoxerifado/models/moviment.dart';
-import 'package:gestao_almoxerifado/models/produto.dart';
+import 'package:gestao_almoxerifado/models/moviment_model.dart';
+import 'package:gestao_almoxerifado/models/produto_model.dart';
 import 'package:gestao_almoxerifado/services/prod_services.dart';
 
 class Movimentform extends StatefulWidget {
   final void Function(Movimentacao) onSubmit;
   final List<Movimentacao> movimentacoes;
 
-  const Movimentform(this.onSubmit, this.movimentacoes, {Key? key})
-    : super(key: key);
+  const Movimentform(this.onSubmit, this.movimentacoes, {super.key});
 
   @override
   State<Movimentform> createState() => _MovimentformState();
@@ -157,14 +156,12 @@ class _MovimentformState extends State<Movimentform> {
                 children: <Widget> [
                   Expanded(
                     child: Text(
-                       _selectedDate == null
-                          ? 'Nenhuma data selecionada!'
-                          : 'Data Selecionada: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}'
+                       'Data Selecionada: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}'
                       ),
                   ),
                   TextButton(
+                    onPressed: _showDatePicker,
                     child: Text('Selecionar Data'), 
-                    onPressed: _showDatePicker, 
                     ),
                 ],
               ),

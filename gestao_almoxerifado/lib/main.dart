@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_almoxerifado/components/chart.dart';
+import 'package:gestao_almoxerifado/dashboardPage.dart';
+import 'package:gestao_almoxerifado/models/dashboard_model.dart';
 import 'package:gestao_almoxerifado/pages/config.dart';
-import 'package:gestao_almoxerifado/pages/dashboard.dart';
-
 import 'package:gestao_almoxerifado/pages/estoque.dart';
 import 'package:gestao_almoxerifado/pages/login.dart';
-import 'package:gestao_almoxerifado/pages/moviment_page.dart';
+import 'package:gestao_almoxerifado/pages/moviment.dart';
 import 'components/nav_bar.dart';
 
 void main() {
@@ -40,7 +41,6 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -48,26 +48,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
  
 
+
   @override
   Widget build(BuildContext context) {
- 
-    return Scaffold(
-      drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Almoxarifado'),
+   return Scaffold(
+    drawer: NavBar(),
+    appBar: AppBar(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      title: Text('Almoxarifado')
+    ),
+    body: Center(
+      child: Column(
+        children: [
+          Container(child: DashboardPage()),
+          Text('Graficos: '),
+          Container(child: Chart()),
+        ],
       ),
-      body: Center(
-       
-        child: Column(
-        
-          mainAxisAlignment: .center,
-          children: [
-            const Dashboard(),
-          ],
-        ),
-      ),
+    ),
     
-    );
+   );
   }
 }
