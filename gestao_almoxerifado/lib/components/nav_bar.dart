@@ -6,6 +6,7 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     //painel de navegação
     return Drawer(
       child: ListView(

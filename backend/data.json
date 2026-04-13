@@ -8,25 +8,18 @@
       "senha": "12345"
     },
     {
-      "id": "7b0c8928-df1a-4c26-a898-4fdf7d573242",
-      "nome": "vanesggggsa",
-      "cargo": "cordenadora",
-      "email": "vanessa@gmail.com",
-      "senha": "12345"
-    },
-    {
-      "id": "6baf3094-10c6-4471-bc3d-5495a0174d04",
-      "nome": "Mudarerrooroeofidoçawduyf",
-      "cargo": "cordenadora",
-      "email": "vanessa@gmail.com",
-      "senha": "12345"
-    },
-    {
       "id": "3eab06e6-9423-4b55-bec8-463a342eebb5",
       "nome": "qualquer",
       "cargo": "ti",
       "email": "ti.get@gmail",
       "senha": "tioi"
+    },
+    {
+      "id": "18da07c5-7b1b-47c5-a962-42afab23bf80",
+      "nome": "kamila",
+      "cargo": "admin",
+      "email": "admin@email.com",
+      "senha": "123456"
     }
   ],
   "produtos": [

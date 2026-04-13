@@ -28,7 +28,7 @@ class _UserListState extends State<UserList> {
                 const SizedBox(height: 20),
                 Text(
                   'Nenhum usuário cadastrado!',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             )
@@ -52,9 +52,10 @@ class _UserListState extends State<UserList> {
                             },
                           )
                         : Text(
-                          ur.nome,
+                          ur.nome.toUpperCase(),
                             style: TextStyle(
-                              color: Theme.of(context).primaryColorDark,
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                     trailing: Row(

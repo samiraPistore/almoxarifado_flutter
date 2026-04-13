@@ -73,15 +73,42 @@ class _EstoqueState extends State<Estoque> {
     return Scaffold(
       drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Estoque'),
+         leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu, color: Colors.white),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          'Estoque',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Produtos em estoque: '),
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              
+              children: [
+                Text('Produtos em estoque: '),
+                Spacer(),
+                Text('filtrar'),
+                IconButton(
+                  icon: const Icon(Icons.filter_list),
+                  tooltip: 'Increase volume', // Text shown on long-press
+                  onPressed: () {
+                    print('Volume increased');
+                  },
+                )
+              ],
+            ),
           ),
 
           Expanded(

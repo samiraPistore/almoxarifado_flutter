@@ -33,6 +33,12 @@ class _ListaMovimentState extends State<ListaMoviment> {
                   child: ListTile(
                     title: Text(
                       mov.tipo.toUpperCase(),
+                      style: TextStyle(
+                        color: mov.tipo.toLowerCase() == 'entrada'
+                            ? Colors.green
+                            : Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

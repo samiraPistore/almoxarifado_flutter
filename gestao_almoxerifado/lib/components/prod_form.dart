@@ -26,7 +26,9 @@ class _ProdutoFormState extends State<ProdutoForm> {
     final valor = double.tryParse(_valorController.text.replaceAll(',', '.')) ?? 0;
 
     // validação simples
-    if (nome.isEmpty || qtd <= 0 || valor <= 0) return;
+    if (nome.isEmpty || qtd <= 0 || valor <= 0){
+      return;
+    } 
 
     widget.onSubmit(
       Produto(
@@ -122,20 +124,10 @@ class _ProdutoFormState extends State<ProdutoForm> {
                     child: ElevatedButton(
                       child: Text('Nova Tarefa'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                          255,
-                          77,
-                          160,
-                          243,
-                        ),
-                        foregroundColor: const Color.fromARGB(
-                          255,
-                          255,
-                          254,
-                          254,
-                        ),
-                      ),
-
+                        backgroundColor: Theme.of(context).primaryColor,
+                        foregroundColor: Colors.white,
+                      ), 
+                      
                       onPressed: _submitForm,
                     ),
                   ),

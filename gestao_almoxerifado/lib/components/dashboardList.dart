@@ -9,41 +9,43 @@ class DashboardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        margin: EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                DashboardCard(
-                  titulo: 'Movimentações: ',
-                  valor: dashboard!.totalMov.toString(),
-                ),
-                DashboardCard(
-                  titulo: 'Produtos Cadastrados: ',
-                  valor: dashboard!.totalProd.toString(),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                DashboardCard(
-                  titulo: 'Entradas: ',
-                  valor: dashboard!.totalEntrada.toString(),
-                ),
-                DashboardCard(
-                  titulo: 'Saídas: ',
-                  valor: dashboard!.totalSaida.toString(),
-                ),
-                DashboardCard(
-                  titulo: 'Estoque baixo',
-                  valor: dashboard!.estoqueBaixo.toString(),
-                ),
-              ],
-            ),
-          ],
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  DashboardCard(
+                    titulo: 'Movimentações: ',
+                    valor: dashboard!.totalMov.toString(),
+                  ),
+                  DashboardCard(
+                    titulo: 'Produtos Cadastrados: ',
+                    valor: dashboard!.totalProd.toString(),
+                  ),
+                  DashboardCard(
+                    titulo: 'Entradas: ',
+                    valor: dashboard!.totalEntrada.toString(),
+                  ),
+                  DashboardCard(
+                    titulo: 'Saídas: ',
+                    valor: dashboard!.totalSaida.toString(),
+                  ),
+                  DashboardCard(
+                    titulo: 'Estoque baixo',
+                    valor: dashboard!.estoqueBaixo.toString(),
+                  ),
+                ],
+              ),
+            ],
+            
+          ),
         ),
       ),
+      
     );
   }
 }

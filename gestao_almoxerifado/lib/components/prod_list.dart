@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/models/produto_model.dart';
 
+
 class ListaProdutos extends StatefulWidget {
   final List<Produto> produtos;
   final void Function(String) onRemove;
@@ -15,6 +16,7 @@ class ListaProdutos extends StatefulWidget {
 }
 
 class _ListaProdutosState extends State<ListaProdutos> {
+  final color = const Color.fromARGB(255, 103, 103, 103);
   String? editandoId;
   final controller = TextEditingController();
   @override
@@ -28,7 +30,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Nenhuma Produto cadastrada!',
+                  'Nenhum Produto cadastrado!',
                   style: TextStyle(color: Colors.white),
                 ),
               ],
@@ -52,13 +54,49 @@ class _ListaProdutosState extends State<ListaProdutos> {
                               });
                             },
                           )
-                        : Text(
-                          pr.nome,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColorDark,
-                            ),
+                        : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                pr.nome.toUpperCase(),
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.bold,
+                      
+                                ),
+                                
+                              ),
+                              Text(
+                                'Código: ${pr.codigo}',
+                                 
+                              ),
+                              Text(
+                                'Categoria: ${pr.categoria}',
+                                 
+                              ),
+                              Text(
+                                'Uni. Medida: ${pr.uniMedida}',
+                                 
+                              ),
+                              Text(
+                                'Qtd. Min: ${pr.qtdMin}',
+                                 
+                              ),
+                              Text(
+                                'Qtd. Atual: ${pr.qtdAtual}',
+                                 
+                              ),
+                              Text(
+                                'Local: ${pr.localEstoq}',
+                                 
+                              ),
+                              Text(
+                                'Valor uni. :${pr.valorUni}',
+                                 
+                              ),
+                            ],
                           ),
-                          
+
                     trailing: Row(
                       mainAxisSize:
                           MainAxisSize.min, // Ocupa apenas o necessário

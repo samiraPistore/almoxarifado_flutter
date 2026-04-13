@@ -158,7 +158,11 @@ app.post("/movimentacoes", (req, res) => {
   if (req.body.tipo === "entrada") {
     produto.qtdAtual += novaMoviment.quantidade;
   } else if (req.body.tipo === "saída") {
-    produto.qtdAtual -= novaMoviment.quantidade;
+    if(produto.qtdAtual < novaMoviment.quantidade){
+       return res.status(404).json({ msg: "Não é possível retirar" });
+    }else{
+      produto.qtdAtual -= novaMoviment.quantidade;
+    }
   }
 
   data.movimentacoes.push(novaMoviment);
@@ -281,6 +285,7 @@ app.get("/dashboard", async (req, res) => {
   res.json({ totalMov, totalProd, totalEntrada, totalSaida, estoqueBaixo});
 });
 //RODA O SERVER
-app.listen(process.env.PORT ?? 3001, () => {
+app.listen(process.env.PORT ?? 3001, '0.0.0.0', () => {
   console.log("Servidor rodando na porta 3001");
 });
+

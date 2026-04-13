@@ -28,11 +28,9 @@ class _MovimentformState extends State<Movimentform> {
   final _destinoController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
-  void _submitForm() {
-    final quantidade = int.tryParse(_quantidadeController.text) ?? 0;
-    final responsavel = _responsController.text;
+  _submitForm() {
     if (produtoSelecionado == null) {
-      return;
+      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Preencha todos os campos')));
     } else {
       widget.onSubmit(
         Movimentacao(
@@ -48,6 +46,7 @@ class _MovimentformState extends State<Movimentform> {
               : _destinoController.text,
         ),
       );
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Movimentação realizada com sucesso')));
     }
 
     _quantidadeController.clear();
@@ -56,7 +55,7 @@ class _MovimentformState extends State<Movimentform> {
     _destinoController.clear();
   }
 
-  _showDatePicker() {
+  void _showDatePicker() {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -168,7 +167,14 @@ class _MovimentformState extends State<Movimentform> {
             ),
         const SizedBox(height: 10),
 
-        ElevatedButton(onPressed: _submitForm, child: Text("Salvar")),
+        ElevatedButton(
+          child: Text("Salvar"),
+           style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).primaryColor,
+              foregroundColor: Colors.white,
+          ), 
+          onPressed: _submitForm, 
+        ),
       ],
     );
   }

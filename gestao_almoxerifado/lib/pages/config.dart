@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_almoxerifado/components/nav_bar.dart';
-import 'package:gestao_almoxerifado/components/user_form.dart';
-import 'package:gestao_almoxerifado/components/user_list.dart';
-import 'package:gestao_almoxerifado/models/users_model.dart';
-import 'package:gestao_almoxerifado/services/user_service.dart';
-
+import 'package:gestao_almoxerifado/pages/users_page.dart';
+import 'package:gestao_almoxerifado/services/app.controller.dart';
+import 'package:provider/provider.dart';
 
 class Configuracoes extends StatefulWidget {
   const Configuracoes({super.key});
@@ -13,65 +11,70 @@ class Configuracoes extends StatefulWidget {
   State<Configuracoes> createState() => _ConfiguracoesState();
 }
 
-
 class _ConfiguracoesState extends State<Configuracoes> {
-  List<Users> users = [];
-
-  void _addUser(Users user) async {
-    final novo = await UserService.addUser(user);
-
-    setState(() {
-      users.add(novo);
-    });
-    Navigator.of(context).pop();
-  }
-
-   void _removeUser(String id) async{
-    await UserService.deleteUser(id);
-    setState(() {
-      users.removeWhere((ur) => ur.id == id);
-    });
-  }
-
-  //Função editar a produto com base no id
-  void _editaUser(String id, String novoTitulo) {
-    setState(() {
-      final user = users.firstWhere((ur) => ur.id == id);
-     user.nome = novoTitulo;
-    });
-  }
-
+  
 
   @override
-
-  void initState(){
-    super.initState();
-    _carregarUsers();
-  }
-
-  Future<void> _carregarUsers() async{
-    final lista = await UserService.fetchUsers();
-    setState(() {
-      users = lista;
-    });
-  }
   Widget build(BuildContext context) {
- 
+
+    final themeProvider = Provider.of<AppController>(context);
+
     return Scaffold(
-      drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
+      drawer: NavBar(),
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Configurações'),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Container(child: UserForm(onSubmit: _addUser)),
-            Expanded(child: UserList(users, _removeUser, _editaUser)),
-          ],
+         leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu, color: Colors.white),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
         ),
-      )
-    
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          'Configurações',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.person),
+                  TextButton(
+                  
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => UsersPage()),
+                      );
+                    },
+                    child: const Text("Ir para Usuários"),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.dark_mode),
+                  const Text('Alterar tema: '),
+                  Switch(
+  
+                    value:themeProvider.isDarkTheme,
+                    onChanged: (value) {
+                      themeProvider.changeTheme();
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

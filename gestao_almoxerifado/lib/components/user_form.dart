@@ -18,7 +18,7 @@ class _UserFormState extends State<UserForm> {
   final _senhaController = TextEditingController();
 
 
- void _submitForm() {
+ _submitForm() {
     final nomeUser = _nomeUserController.text;
     final cargo = _cargoController.text;
     final email = _emailController.text;
@@ -26,7 +26,7 @@ class _UserFormState extends State<UserForm> {
 
     // validação simples
     if (nomeUser.isEmpty || cargo.isEmpty|| email.isEmpty || senha.isEmpty){
-      return;
+      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Preencha todos os campos')));
     }else{
        widget.onSubmit(
         Users(
@@ -36,7 +36,8 @@ class _UserFormState extends State<UserForm> {
           email: email, 
           senha: senha, 
           ),
-        );
+        ); 
+     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Usuário cadastrado com sucesso')));
     }
 
     // limpa tudo
@@ -86,7 +87,7 @@ class _UserFormState extends State<UserForm> {
                     child: ElevatedButton(
                     child: Text('Cadastrar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 77, 160, 243),
+                      backgroundColor: Theme.of(  context).primaryColor,
                       foregroundColor: const Color.fromARGB(255, 255, 254, 254)
                     ),
                    onPressed: _submitForm, 
