@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { randomUUID } from "crypto"; // gerar id único e aleatório
-import fs, { read } from "fs"; // mexer com o arquivo json para armazenar dados sem db
+import fs from "fs"; // mexer com o arquivo json para armazenar dados sem db
 
 const app = express();
 app.use(cors());
@@ -284,7 +284,9 @@ app.get("/dashboard", async (req, res) => {
   res.json({ totalMov, totalProd, totalEntrada, totalSaida, estoqueBaixo});
 });
 //RODA O SERVER
+const port = process.env.PORT || 3001;
+
 app.listen(process.env.PORT ?? 3001, '0.0.0.0', () => {
-  console.log("Servidor rodando na porta 3001");
+  console.log(`Servidor rodando na porta ${port}`);
 });
 
