@@ -24,11 +24,12 @@ class _UserListState extends State<UserList> {
               .users
               .isEmpty //se lista estiver vazia mostra o texto "Nenhuma tarefa cadastrada"
           ? Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
                 Text(
                   'Nenhum usuário cadastrado!',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color:Theme.of(context).colorScheme.primary),
                 ),
               ],
             )
@@ -54,7 +55,7 @@ class _UserListState extends State<UserList> {
                         : Text(
                           ur.nome.toUpperCase(),
                             style: TextStyle(
-                              color: Theme.of(context).primaryColor,
+                              color:Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -70,7 +71,7 @@ class _UserListState extends State<UserList> {
                         ),
                         IconButton(
                           icon: Icon(Icons.edit),
-                          color: Theme.of(context).primaryColor,
+                          color:Theme.of(context).colorScheme.primary,
                           onPressed: () {
                             setState(() {
                               if (editandoId == ur.id) {

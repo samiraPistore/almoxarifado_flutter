@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/users_model.dart';
 
 class UserService {
-  static const String baseUrl = 'http://10.196.200.12:3001';
+  static const String baseUrl = 'https://almoxarifado-flutter.onrender.com';
 
   static Future<List<Users>> fetchUsers() async {
     final response = await http.get(Uri.parse('$baseUrl/users'));

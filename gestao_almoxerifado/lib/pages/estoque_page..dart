@@ -38,11 +38,13 @@ class _EstoqueState extends State<Estoque> {
   }
 
   //Função editar a produto com base no id
-  void _editaProduto(String id, String novoTitulo) {
+  void _editaProduto(Produto prodAtualizado) {
     setState(() {
-      final produto = produtos.firstWhere((pr) => pr.id == id);
-      produto.nome = novoTitulo;
-    });
+    final index = produtos.indexWhere((p) => p.id == prodAtualizado.id);
+    if (index != -1) {
+      produtos[index] = prodAtualizado;
+    }
+  });
   }
 
   void _openProdutoFormModal(BuildContext context) {

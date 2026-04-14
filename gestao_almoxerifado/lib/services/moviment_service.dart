@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/moviment_model.dart';
 
 class MovimentService {
-  static const String baseUrl = 'http://10.196.200.12:3001';
+  static const String baseUrl = 'https://almoxarifado-flutter.onrender.com';
 
   static Future<List<Movimentacao>> fetchMovimentacao() async {
     final response = await http.get(Uri.parse('$baseUrl/movimentacoes'));

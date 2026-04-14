@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/dashboard_model.dart';
 
 class DashboardService {
-  static const String baseUrl = 'http://10.196.200.12:3001';
+  static const String baseUrl = 'https://almoxarifado-flutter.onrender.com';
 
   static Future<DashboardModel> fetchIndic() async{
     final response = await http.get(

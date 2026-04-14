@@ -14,7 +14,6 @@ class _ProdutoFormState extends State<ProdutoForm> {
   final _nomeController = TextEditingController();
   final _codigoController = TextEditingController();
   final _categoriaController = TextEditingController();
-  final _uniMedidaController = TextEditingController();
   final _qtdMinController = TextEditingController();
   final _qtdAtualController = TextEditingController();
   final _localController = TextEditingController();

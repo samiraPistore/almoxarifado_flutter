@@ -87,7 +87,7 @@ class _UserFormState extends State<UserForm> {
                     child: ElevatedButton(
                     child: Text('Cadastrar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(  context).primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: const Color.fromARGB(255, 255, 254, 254)
                     ),
                    onPressed: _submitForm, 

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/produto_model.dart';
 
 class ProdutoService {
-  static const String baseUrl = 'http://10.196.200.12:3001';
+  static const String baseUrl = 'https://almoxarifado-flutter.onrender.com';
 
   //Função pegar o produto
   static Future<List<Produto>> fetchProdutos() async {
