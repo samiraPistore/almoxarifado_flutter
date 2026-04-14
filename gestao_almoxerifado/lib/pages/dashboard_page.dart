@@ -35,21 +35,9 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
       appBar: AppBar(
-         leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-  
-        backgroundColor: Theme.of(context).primaryColor,
+        
         title: Text(
-          'Home',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          'Home'
           
         ),
       ),

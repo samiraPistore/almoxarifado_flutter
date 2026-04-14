@@ -28,10 +28,32 @@ class MyApp extends StatelessWidget {
       title: 'Gestão Almoxarifado',
 
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        brightness: Brightness.light,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.light
+          ),
+          appBarTheme: const AppBarTheme(
+          backgroundColor:Color.fromARGB(255, 8, 78, 11),
+          foregroundColor: Colors.white, 
+          iconTheme: IconThemeData(color: Colors.white),// Cor do texto/icones
+        ),
+      
       ),
+      
 
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.dark(
+            primary: const Color.fromARGB(255, 77, 180, 81),// Fundo mais escuro
+            onSurface: Colors.white, // Texto claro para contraste),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 97, 229, 102),
+          foregroundColor: Color.fromARGB(255, 30, 30, 30), 
+          iconTheme: IconThemeData(color: Colors.black),// Cor do texto/icones no modo escuro
+        ),
+      ),
       themeMode: temaAtual.themeMode,
 
       initialRoute: '/',

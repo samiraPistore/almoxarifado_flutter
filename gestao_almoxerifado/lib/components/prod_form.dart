@@ -36,7 +36,6 @@ class _ProdutoFormState extends State<ProdutoForm> {
         nome: _nomeController.text,
         codigo: _codigoController.text,
         categoria: _categoriaController.text,
-        uniMedida: _uniMedidaController.text,
         qtdMin: int.tryParse(_qtdMinController.text) ?? 0,
         qtdAtual: int.tryParse(_qtdAtualController.text) ?? 0,
         localEstoq: _localController.text,
@@ -48,7 +47,6 @@ class _ProdutoFormState extends State<ProdutoForm> {
     _nomeController.clear();
     _codigoController.clear();
     _categoriaController.clear();
-    _uniMedidaController.clear();
     _qtdMinController.clear();
     _qtdAtualController.clear();
     _localController.clear();
@@ -78,13 +76,6 @@ class _ProdutoFormState extends State<ProdutoForm> {
                 controller: _categoriaController,
                 onSubmitted: (_) => _submitForm(),
                 decoration: const InputDecoration(labelText: 'Categoria'),
-              ),
-              TextField(
-                controller: _uniMedidaController,
-                onSubmitted: (_) => _submitForm(),
-                decoration: const InputDecoration(
-                  labelText: 'Unidade de medida',
-                ),
               ),
               TextField(
                 keyboardType: TextInputType.numberWithOptions(decimal: true),

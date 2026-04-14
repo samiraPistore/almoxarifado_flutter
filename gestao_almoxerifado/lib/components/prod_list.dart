@@ -74,10 +74,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
                                 'Categoria: ${pr.categoria}',
                                  
                               ),
-                              Text(
-                                'Uni. Medida: ${pr.uniMedida}',
-                                 
-                              ),
+          
                               Text(
                                 'Qtd. Min: ${pr.qtdMin}',
                                  

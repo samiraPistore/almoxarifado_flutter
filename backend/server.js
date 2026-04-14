@@ -86,7 +86,6 @@ app.post("/produtos", (req, res) => {
     nome: req.body.nome,
     codigo: req.body.codigo,
     categoria: req.body.categoria,
-    uniMedida: req.body.uniMedida,
     qtdMin: req.body.qtdMin,
     qtdAtual: req.body.qtdAtual,
     localEstoq: req.body.localEstoq,

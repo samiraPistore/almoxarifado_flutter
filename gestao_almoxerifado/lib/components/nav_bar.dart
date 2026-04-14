@@ -12,7 +12,8 @@ class NavBar extends StatelessWidget {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Gerente'), //temporário
+            accountName: Text('Gerente',
+            style: TextStyle(color: Theme.of(context).primaryColor),), //temporário
             accountEmail: Text('gerent.com'), //temporário
             currentAccountPicture: CircleAvatar(
               child: ClipOval(

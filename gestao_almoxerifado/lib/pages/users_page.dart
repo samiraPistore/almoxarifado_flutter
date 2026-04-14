@@ -55,13 +55,9 @@ class _UsersPageState extends State<UsersPage> {
     return Scaffold(
       drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
       appBar: AppBar(
-        
-        backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           'Usuários',
-           style: TextStyle(
-            color: Colors.white,
-          ),
+          
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

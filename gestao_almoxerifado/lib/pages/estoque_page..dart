@@ -15,6 +15,7 @@ class Estoque extends StatefulWidget {
 class _EstoqueState extends State<Estoque> {
   //lista produtos
   List<Produto> produtos = [];
+  List<Produto> produtosFiltrados = [];
 
   ////Função para adiconar produtos
   void _addProduto(Produto produto) async {
@@ -54,6 +55,8 @@ class _EstoqueState extends State<Estoque> {
     );
   }
 
+
+
   @override
   void initState() {
     super.initState();
@@ -73,20 +76,10 @@ class _EstoqueState extends State<Estoque> {
     return Scaffold(
       drawer: NavBar(), //chama o menu do arquvo NavigatorBar.dart
       appBar: AppBar(
-         leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
+  
         title: Text(
           'Estoque',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+    
         ),
       ),
       body: Column(
@@ -102,7 +95,6 @@ class _EstoqueState extends State<Estoque> {
                 Text('filtrar'),
                 IconButton(
                   icon: const Icon(Icons.filter_list),
-                  tooltip: 'Increase volume', // Text shown on long-press
                   onPressed: () {
                     print('Volume increased');
                   },

@@ -58,20 +58,11 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
+        
+        
         title: Text(
           'Movimentação de Estoque',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          
           ),
         ),
 
