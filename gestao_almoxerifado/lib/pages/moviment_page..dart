@@ -66,16 +66,20 @@ class _MovimentacaoPageState extends State<MovimentacaoPage> {
           ),
         ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            //Form para adiciionar movimentações
-            Movimentform(_addMoviment, movimentacoes),
-            // HISTÓRICO
-           Text("Histórico:"),
-            Expanded(child: ListaMoviment(movimentacoes)),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Movimentform(_addMoviment, movimentacoes),
+              // HISTÓRICO
+             Text("Histórico:"),
+              SizedBox(
+                height: 400,
+                child: ListaMoviment(movimentacoes),
+              ),
+            ],
+          ),
         ),
       ),
     );

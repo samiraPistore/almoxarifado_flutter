@@ -31,11 +31,21 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   //Função editar a produto com base no id
-  void _editaUser(String id, String novoTitulo) {
-    setState(() {
-      final user = users.firstWhere((ur) => ur.id == id);
-      user.nome = novoTitulo;
-    });
+  void _editaUser(Users userAtualizado) async {
+    await UserService.editaUser(
+      userAtualizado.id,
+      userAtualizado,
+  );
+
+  setState(() {
+    final index = users.indexWhere(
+      (ur) => ur.id == userAtualizado.id,
+    );
+
+    if (index != -1) {
+      users[index] = userAtualizado;
+    }
+  });
   }
 
   @override

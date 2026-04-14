@@ -54,5 +54,28 @@ class ProdutoService {
   }
 
 
-  //
+  //Função para editar
+  static Future<Produto> editProduto( String id, Produto produto) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/produtos/$id'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        "nome": produto.nome,
+        "codigo": produto.codigo,
+        "categoria": produto.categoria,
+        "qtdMin": produto.qtdMin,
+        "qtdAtual": produto.qtdAtual,
+        "localEstoq": produto.localEstoq,
+        "valorUni": produto.valorUni,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return Produto.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Erro ao adicionar produto');
+    }
+  }
+
+
 }

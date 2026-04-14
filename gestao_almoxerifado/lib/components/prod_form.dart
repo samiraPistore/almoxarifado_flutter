@@ -19,15 +19,21 @@ class _ProdutoFormState extends State<ProdutoForm> {
   final _localController = TextEditingController();
   final _valorController = TextEditingController();
 
-  void _submitForm() {
+  _submitForm() {
     final nome = _nomeController.text;
     final qtd = int.tryParse(_qtdMinController.text) ?? 0;
     final valor = double.tryParse(_valorController.text.replaceAll(',', '.')) ?? 0;
 
     // validação simples
-    if (nome.isEmpty || qtd <= 0 || valor <= 0){
-      return;
-    } 
+    if (nome.isEmpty || qtd <= 0 || valor <= 0 ){
+      return ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Preencha todos os campos')));
+    } else if(qtd<=0){
+      return ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Valor inválido')));
+    }
 
     widget.onSubmit(
       Produto(

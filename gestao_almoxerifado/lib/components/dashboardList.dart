@@ -23,7 +23,7 @@ class DashboardList extends StatelessWidget {
                     valor: dashboard!.totalMov.toString(),
                   ),
                   DashboardCard(
-                    titulo: 'Produtos Cadastrados: ',
+                    titulo: 'Total produtos: ',
                     valor: dashboard!.totalProd.toString(),
                   ),
                   DashboardCard(

@@ -4,9 +4,8 @@ import 'package:gestao_almoxerifado/models/users_model.dart';
 class UserList extends StatefulWidget {
   final List<Users> users;
   final void Function(String) onRemove;
-  final void Function(String id, String novoUser) onEdit;
+  final void Function(Users userAtualizado) onEdit;
 
-  //Construtor da lista
   const UserList(this.users, this.onRemove, this.onEdit, {super.key});
 
   @override
@@ -14,82 +13,132 @@ class UserList extends StatefulWidget {
 }
 
 class _UserListState extends State<UserList> {
-  String? editandoId;
-  final controller = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child:
-          widget
-              .users
-              .isEmpty //se lista estiver vazia mostra o texto "Nenhuma tarefa cadastrada"
-          ? Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+  void _editaModalUser(Users ur) {
+    final nomeController = TextEditingController(text: ur.nome);
+    final cargoController = TextEditingController(text: ur.cargo);
+    final emailController = TextEditingController(text: ur.email);
+    final senhaController = TextEditingController(text: ur.senha);
+
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text('Editar Usuário: ${ur.nome}'),
+          content: SingleChildScrollView(
+            child: Column(
               children: [
-                const SizedBox(height: 20),
-                Text(
-                  'Nenhum usuário cadastrado!',
-                  style: TextStyle(color:Theme.of(context).colorScheme.primary),
+                TextField(
+                  controller: nomeController,
+                  decoration: const InputDecoration(labelText: 'Nome'),
+                ),
+                TextField(
+                  controller: cargoController,
+                  decoration: const InputDecoration(labelText: 'Cargo'),
+                ),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                ),
+                TextField(
+                  controller: senhaController,
+                  decoration: const InputDecoration(labelText: 'Senha'),
                 ),
               ],
-            )
-          //se não retorna as users
-          : ListView.builder(
-              itemCount: widget.users.length,
-              itemBuilder: (ctx, index) {
-                final ur = widget.users[index];
-                return Card(
-                  margin: EdgeInsets.all(10),
-                  elevation: 3,
-                  child: ListTile(
-                    title: editandoId == ur.id
-                        ? TextField(
-                            controller: controller,
-                            onSubmitted: (value) {
-                              widget.onEdit(ur.id, value);
-                              setState(() {
-                                editandoId = null;
-                              });
-                            },
-                          )
-                        : Text(
-                          ur.nome.toUpperCase(),
-                            style: TextStyle(
-                              color:Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                    trailing: Row(
-                      mainAxisSize:
-                          MainAxisSize.min, // Ocupa apenas o necessário
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.delete),
-
-                          color: Theme.of(context).colorScheme.error,
-                          onPressed: () => widget.onRemove(ur.id),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.edit),
-                          color:Theme.of(context).colorScheme.primary,
-                          onPressed: () {
-                            setState(() {
-                              if (editandoId == ur.id) {
-                                widget.onEdit(ur.id, controller.text);
-                                editandoId = null;
-                              } else {
-                                editandoId = ur.id;
-                                controller.text = ur.nome;
-                              }
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
             ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final atualizadoU = Users(
+                  id: ur.id,
+                  nome: nomeController.text,
+                  cargo: cargoController.text,
+                  email: emailController.text,
+                  senha: senhaController.text,
+                );
+
+                widget.onEdit(atualizadoU);
+                Navigator.pop(ctx);
+              },
+              child: const Text('Salvar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.users.isEmpty) {
+      return Center(
+        child: Text(
+          'Nenhum usuário cadastrado!',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: widget.users.length,
+      itemBuilder: (ctx, index) {
+        final ur = widget.users[index];
+
+        return Card(
+          margin: const EdgeInsets.all(10),
+          elevation: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // TEXTO À ESQUERDA
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        ur.nome.toUpperCase(),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text('Cargo: ${ur.cargo}'),
+                      Text('Email: ${ur.email}'),
+                      Text('Senha: ${ur.senha}'),
+                    ],
+                  ),
+                ),
+
+                // ÍCONES À DIREITA
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      color: Theme.of(context).colorScheme.primary,
+                      onPressed: () => _editaModalUser(ur),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      color: Theme.of(context).colorScheme.error,
+                      onPressed: () => widget.onRemove(ur.id),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

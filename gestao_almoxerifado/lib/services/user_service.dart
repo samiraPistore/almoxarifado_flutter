@@ -43,4 +43,25 @@ class UserService {
     }
   }
 
+
+
+  static Future<Users> editaUser(String id, Users user) async {
+  final response = await http.put(
+    Uri.parse('$baseUrl/users/$id'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      "nome": user.nome,
+      "cargo": user.cargo,
+      "email": user.email,
+      "senha": user.senha,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    return Users.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Erro ao editar usuários');
+  }
+}
+
 }

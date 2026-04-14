@@ -31,39 +31,37 @@ class _ListaProdutosState extends State<ListaProdutos> {
       builder: (ctx) {
         return AlertDialog(
           title: Text('Editar produto: ${pr.nome}'),
-          content: SingleChildScrollView(
-            child: Column(
-              children: [
-                TextField(
-                  controller: nomeController,
-                  decoration: const InputDecoration(labelText: 'Nome'),
-                ),
-                TextField(
-                  controller: codigoController,
-                  decoration: const InputDecoration(labelText: 'Código'),
-                ),
-                TextField(
-                  controller: categoriaController,
-                  decoration: const InputDecoration(labelText: 'Categoria'),
-                ),
-                TextField(
-                  controller: qtdMinController,
-                  decoration: const InputDecoration(labelText: 'Qtd Mínima'),
-                ),
-                TextField(
-                  controller: qtdAtualController,
-                  decoration: const InputDecoration(labelText: 'Qtd Atual'),
-                ),
-                TextField(
-                  controller: localController,
-                  decoration: const InputDecoration(labelText: 'Local'),
-                ),
-                TextField(
-                  controller: valorController,
-                  decoration: const InputDecoration(labelText: 'Valor'),
-                ),
-              ],
-            ),
+          content: Column(
+            children: [
+              TextField(
+                controller: nomeController,
+                decoration: const InputDecoration(labelText: 'Nome'),
+              ),
+              TextField(
+                controller: codigoController,
+                decoration: const InputDecoration(labelText: 'Código'),
+              ),
+              TextField(
+                controller: categoriaController,
+                decoration: const InputDecoration(labelText: 'Categoria'),
+              ),
+              TextField(
+                controller: qtdMinController,
+                decoration: const InputDecoration(labelText: 'Qtd Mínima'),
+              ),
+              TextField(
+                controller: qtdAtualController,
+                decoration: const InputDecoration(labelText: 'Qtd Atual'),
+              ),
+              TextField(
+                controller: localController,
+                decoration: const InputDecoration(labelText: 'Local'),
+              ),
+              TextField(
+                controller: valorController,
+                decoration: const InputDecoration(labelText: 'Valor'),
+              ),
+            ],
           ),
           actions: [
             TextButton(
@@ -104,6 +102,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
               .produtos
               .isEmpty //se lista estiver vazia mostra o texto "Nenhuma tarefa cadastrada"
           ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
                 Text(
@@ -121,41 +120,49 @@ class _ListaProdutosState extends State<ListaProdutos> {
                   margin: const EdgeInsets.all(10),
                   elevation: 3,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
+                    padding: const EdgeInsets.all(10),
+
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          pr.nome.toUpperCase(),
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold,
+                        // INFORMAÇÕES
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                pr.nome.toUpperCase(),
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text('Código: ${pr.codigo}'),
+                              Text('Categoria: ${pr.categoria}'),
+                              Text('Qtd. Min: ${pr.qtdMin}'),
+                              Text('Qtd. Atual: ${pr.qtdAtual}'),
+                              Text('Local: ${pr.localEstoq}'),
+                              Text('Valor uni.: ${pr.valorUni}'),
+
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.edit),
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                    onPressed: () => _editaModal(pr),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.delete),
+                                    color: Theme.of(context).colorScheme.error,
+                                    onPressed: () => widget.onRemove(pr.id),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-
-                        Text('Código: ${pr.codigo}'),
-                        Text('Categoria: ${pr.categoria}'),
-                        Text('Qtd. Min: ${pr.qtdMin}'),
-                        Text('Qtd. Atual: ${pr.qtdAtual}'),
-                        Text('Local: ${pr.localEstoq}'),
-                        Text('Valor uni.: ${pr.valorUni}'),
-
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.delete),
-                              color: Theme.of(context).colorScheme.error,
-                              onPressed: () => widget.onRemove(pr.id),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.edit),
-                              color: Theme.of(context).colorScheme.primary,
-                              onPressed: () {
-                                _editaModal(pr);
-                              },
-                            ),
-                          ],
                         ),
                       ],
                     ),
